@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="icon" type="image/png" href="static/favicon.png" />
+    <title>
+      Enigma
+    </title>
+	</head>
+	<body>
+        <div class="content">
+          <div class="sun">
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <form class="grid" id="first" action="/result" method="POST">
+            <div class="input-container">
+              <label>
+                <input type="text" id="name" name="name" required />
+                <div class="label-text">Enter the file name </div>
+              </label>
+            </div>
+
+            <div class="container" style="height: 43%;">
+              <a href="#" class="btn" onclick="document.getElementById('first').submit(); toggler();">E n c r y p t</a>
+            </div>
+
+            <span class="scroll-btn" style="margin-top: -5%; z-index: 0">
+              <a href="#second">
+                <span class="mouse">
+                  <span>
+                  </span>
+                </span>
+              </a>
+            </span>
+
+          <section class="seperator-wrapper" style="margin-left: -5%; margin-top: 5%; margin-bottom: 5%">
+            <div class="seperator gradient">
+            </div>
+          </section>
+
+          {% if name %}
+
+            <h3 class="let_space">{{eccdisp}}{{display}}{{name}}{{aesdisp}}</h3>
+
+          {% else %}
+
+            <h3 class="let_space">Data security is of utmost importance in today’s world.
+              Especially when the data is travelling through an insecure communication network.
+              There are symmetric key encryption techniques which use only one key for both encryption and decryption of the data.
+              They are simple in design but can be easily cracked using brute force attacks.
+              The entire security of such a cipher could be compromised if the attacker anyhow gets access to the keys.
+              On the other hand, there are asymmetric key based algorithms which use a pair of keys, one for encryption,
+              and the other for decryption, whose security is higher as compared to the symmetric ones but lack in time efficiency.
+              It is also difficult to manage such a huge base of key-pairs efficiently and safely.
+              This project mainly focusses on the implementation of a system capable of encryption and decryption of multimedia data (Text, Images, Videos, Audio etc.)
+              using a hybrid model based on the amalgamation of symmetric encryption techniques such as AES[1] and asymmetric techniques such as ECC.
+              ECC is based on the toughness of the discrete logarithm problem (DLP), whose public key is short,
+              network bandwidth is little and ability to resist to attack is strong which makes it really difficult to guess the keys.
+              Even if the attacker gets access to any of the keys, he or she won’t be in a position to decipher it in a relatively finite amount of man-years.</h3>
+
+          {% endif %}
+
+        </form>
+
+        <section class="seperator-wrapper">
+          <div class="seperator gradient">
+          </div>
+        </section>
+
+        <form class="grid" id = "second" action="/decrypt" method="POST">
+          <div class="container" style="height: 45%; margin-bottom: -5%;">
+            <a href="#" class="btn" onclick="document.getElementById('second').submit();">D e c r y p t</a>
+          </div>
+          {% if decout %}
+
+          <center>
+            <h3 class="let_space" style="text-align: center !important;">{{decout}}</h3>
+          </center>
+
+          {% endif %}
+        </form>
+
+        <br>
+        <br>
+        <br>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script type="text/javascript" src="static/main.js"></script>
+    </body>
+
+</html>
